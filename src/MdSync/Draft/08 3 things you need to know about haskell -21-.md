@@ -1,1 +1,0 @@
-3 things which changes when Haskelling:
