@@ -1,0 +1,4 @@
+Three segments:
+- Structured programming
+-OOP
+-Agile Practice

@@ -1,0 +1,42 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;}
+\deftab720
+\pard\pardeftab720\sa320
+
+\f0\fs26 \cf0 Bob : Can I generalize this loop stuff ?\
+Simon : look at map
+\f1 \
+map\'a0f\'a0\'a0[]\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0=\'a0\'a0[]\uc0\u8232 map\'a0f\'a0(x:xs)\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0\'a0=\'a0\'a0f\'a0x\'a0:\'a0map\'a0f\'a0xs\
+map uppercase ['a','b',c'] = \
+uppercase a : map uppercase [ 'b', ' c']= \
+'A' : uppercase 'b' : map uppercase 'c' = 'A':'B': uppercase 'c': map uppercase []\
+= 'A':'B':'C':[] = "ABC"\
+
+\f0 so we could use map to define the previous function toUppercase
+\f1 \
+toUppercase l = map uppercase l\
+\
+Bob: wow, this is going to be hard to do more terse\'85\
+Simon : {\field{\*\fldinst{HYPERLINK "scrivcmt://1FD0A63F-1DFC-4970-9AFA-45A0E30B06C5"}}{\fldrslt indeed}}\
+\
+
+\f0 map is doing all the recursion loop stuff for us. note that we are passing a function as as argument (
+\f1 uppercase
+\f0 ). this is possible in haskell.
+\f1 \
+
+\f0 map is one of the workhorse in haskell, the 'for' loop of haskell when you need to do something with each element of a list. if you need to carry something across, like when you count , or sum, you use fold, the other workhorse.\
+fold f accu [] = accu\
+fold f accu x:xs = f x ( fold f accu xs) \
+\pard\pardeftab720
+\cf0 \
+\pard\pardeftab720\sa320
+\cf0 Let s try to sum a list, with (+) a b = a + b .  \
+( parentheses needed when to use the + function as prefix ) .\
+fold (+)  0 [1,2,3] =  fold (+) ( (+) 0 1) 	 [2,3]\
+= fold (+) 1 [2,3] = fold (+) ((+) 1  2) [3] = fold (+) (3) [3] \
+= fold ((+) 3 3) [] = fold 6 [] = 6\
+
+\f1 \
+}

@@ -1,0 +1,67 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fnil\fcharset0 Verdana;\f1\fnil\fcharset0 Consolas;}
+{\colortbl;\red255\green255\blue255;\red37\green127\blue159;\red234\green234\blue234;\red0\green0\blue120;
+\red107\green0\blue3;}
+\pard\tx720\tx1440\tx2160\fi360\sl288\slmult1\pardirnatural
+
+\f0\fs28 \cf0 (demonstration of map and fold on recursion):\
+
+\b BOB
+\b0 : the previous statement that one cannot mutate variable puzzled me! I cannot imagine working without ..\
+\
+for instance, in a loop to calculate \
+the length of a String:\
+\
+in C: \
+
+\f1 \cf2 \cb3 int\cf0  calculate_length(\cf4 char\cf0  *string) \{\
+\pard\pardeftab720
+\cf0     \cf2 int\cf0  length = \cf5 0\cf0 ;\
+    \cf4 while\cf0  (string[length] != \cf5 '\\0'\cf0 ) \{\
+        length++;\
+    \}\
+    \cf4 return\cf0  length;\
+\}
+\f0 \cb1 \
+\pard\tx720\tx1440\tx2160\fi360\sl288\slmult1\pardirnatural
+\cf0 \
+trying to do something similar in haskell would be:\
+mylength s = do  \{ let l =0\
+			            for (s)\
+			                                   			             l = l+1\
+			        return ( l)\
+			        \}\
+because as mentioned, one cannot  mutate a variable, and l is mutated in l=l+1 \
+\
+
+\b Simon
+\b0  : \
+well, we could use recursion instead of loops:\
+\
+mylength counter s = \
+      if (s==[]) \
+      then counter \
+      else  mylength (1 + counter) (tail(s)) \
+\
+\
+main = print (  mylength 0 "how long?" )\
+	\
+mylength is recursing by removing one character ( the head) at a time, and adding one to a counter, until the string is empty, in which case it terminates and results the counter.\
+ "abc" 0\
+"bc" 1\
+"c" 2	\
+"" 3\
+\
+\
+\
+\
+this technique is very common. it is called a 
+\b fold
+\b0 ,  and do a computation that "accumulate" a state (the length) when traverse a structure ( the list).\
+( Cross domain example: a SQL count (or sum) traverse a table and accumulate a count (or sum) )\
+\
+Note we did not needed to mutate the counter to accumulate its value. we passed it by parameter to the next call.\
+\
+( questions about performance ? we will see in (tbd))\
+\
+}

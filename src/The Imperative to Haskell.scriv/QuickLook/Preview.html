@@ -1,0 +1,481 @@
+<html>
+
+<head>
+<title>The Imperative to Haskell</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+	body {background-color: #bac0c7}
+    p.binderItem {margin: 10.0px 0.0px 0.0px 05.0px; font-family:Verdana, Cochin, Times, Courier, Arial, serif; font-size:14.0px;}
+    .page {border: 1px solid #727272; background: #fff}
+    hr {
+      border-top: 1px dashed #000;
+      border-bottom: 0px solid #fff;
+      color: #fff;
+      background-color: #fff;
+      height: 0px;
+  </style>
+</head>
+
+<body>
+
+<table border="0" width="100%" cellspacing="3">
+<tr>
+<td>
+
+<table class="page" width="100%" cellspacing="10" cellpadding="2">
+<tr>
+<td valign="top">
+
+<ul>
+<li>
+<p class="binderItem"><strong>FrontPage</strong></p>
+</li>
+<li>
+<p class="binderItem"><strong>FrontMatter</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>GHH : the Grey Hair Haskellers</strong><br/>GHH : the Grey Hair Haskellers<br/>
+<br/>
+Contributors & Reviewers: <br/>
+Tom Schrijvers <tom.schrijvers@ugent.be><br/>
+ Richard GUITTER <rguitter@gmail.com><br/>
+Sebastien.bocq@gmail.com<br/>
+<br/>
+Bartosz Milewski bartosz@relisoft.com</p>
+</li>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Introduction</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>Audience:</strong><br/><br/>
+Meet the audience of :<br/>
+<br/>
+- Bob, the cobol programmer. Bob is 50, worked on Mainframe, in the accounting department of a bank, using structured programming. He also knows Pascal, C, Basic.<br/>
+- Clara is a C++ programmer . Clara is 40, knows OO and design patterns, work in Unix, in the market department of a bank.<br/>
+- Jo is a Java Programmer. Jo is 30, uses J2EE and agile, and work in the e-commerce application of a bank.  <br/>
+<br/>
+All 3 are applications programers, and Bob was also part of the infrastructure...</p>
+</li>
+<li>
+<p class="binderItem"><strong>Bob, Clara, and Jo create an Accounting program</strong><br/>We will bring Bob, Clara, and Jo to the point they can do an accounting program in Haskell, and map they current knowledge and practice to Haskell. <br/>
+To know what to do , what to do not,  and how to do it.<br/>
+After this, we add a bit of spice and cultural background on top; but like with spice, a bit is exciting, too  much kills.</p>
+</li>
+<li>
+<p class="binderItem"><strong>How is this book organized</strong><br/> Part1 introduces the syntax and programming styles. We start with How, We use a series of « how can i do this in haskell », based on the way we were taught imperative programming. I cover in order: structured programming, OO concepts, agile and build environment.<br/>
+The scope is basic haskell and covers the notions known in the imperative world.<br/>
+Part 2  uses this knowledge and build iteratively a real world example of an accounting program, (inspired by hledger) where we discuss and comment practi...</p>
+</li>
+<li>
+<p class="binderItem"><strong>3 things you need to know about haskell</strong><br/>90 % type fighting, 10%debug</p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>big, Massive Learning curve...</strong><br/><br/>
+- Haskell learning is much vaster than any other language <br/>
+<br/>
+<br/>
+- But you just need the equivalent of what you know today to get starting « professional » application.<br/>
+<br/>
+<br/>
+#<br/>
+<br/>
+ <br/>
+</p>
+</li>
+<li>
+<p class="binderItem"><strong>Get a running program: </strong><br/>To Get to a point to the program is running:<br/>
+- Most Language is 10% compiler syntax fight, 90% debug.<br/>
+- Haskell is 90% compiler fight, 10% debug ( if any)</p>
+</li>
+<li>
+<p class="binderItem"><strong>library</strong><br/>- The library is huge, (1500+) and wild, and open. <br/>
+- You can get lost, so we will provide a first selection of useful things</p>
+</li>
+</ul>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Part 1: concepts bob, Clara and Jo already knew, and haskell equivalents</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>revisiting your experience</strong><br/>lets take all the belief we have , and se if that still work</p>
+</li>
+<li>
+<p class="binderItem"><strong>BOB and Structured Progamming</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>Content</strong><br/>If then else<br/>
+For<br/>
+Variables<br/>
+Functions and actions<br/>
+IO files<br/>
+Structure, data, records, <br/>
+case</p>
+</li>
+<li>
+<p class="binderItem"><strong>Bob  : when I was taught Basic and then Cobol,  Variables</strong><br/>Bob  : when I was taught Basic, C  and then Cobol, <br/>
+My course talked about variables, control structures, data structures, subroutines and File IO, So I will ask along these lines..</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use numbers and String ?</strong><br/>Yes. <br/>
+<br/>
+Print (2+2) gives 4, print "hello" gives "hello".<br/>
+<br/>
+'A' is a Char, and "A" is a String. <br/>
+<br/>
+<br/>
+<br/>
+There is Int, Float , even Fraction .<br/>
+<br/>
+ print ((11 % 15) * (5 % 3))<br/>
+11 % 9 <br/>
+<br/>
+Note : <br/>
+- Integer has no limit except the capacity of your machine<br/>
+4^103<br/>
+<br/>
+102844034832575377634685573909834406561420991602098741459288064<br/>
+<br/>
+<br/>
+</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use lists ?</strong><br/>Yes.<br/>
+<br/>
+List are the workhorse in Haskell.<br/>
+<br/>
+[ ] denote a list . (not an Array !)  <br/>
+<br/>
+a String is just a list of Char : String = [Char]<br/>
+['a','b','c'] = "abc"<br/>
+<br/>
+some functions on list : <br/>
+: add an element in front of the list<br/>
+'a':"bc" = "abc" = ['a','b','c'] = 'a':'b':'c'<br/>
+<br/>
+++ joins two list together (concatenate)<br/>
+"ab"++"cd" = "abcd"<br/>
+<br/>
+head ("abc") = 'a' <br/>
+head gets the head of the list<br/>
+<br/>
+tail ("abc") = "bc"<br/>
+head gets the tail of the list, (i.e. the list minus the head)<br/>
+<br/>
+"abcde"!!2 = 'c' <br/>
+!! get the nth it...</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use arrayS ?</strong><br/>yes..<br/>
+<br/>
+x !! 3 = ..<br/>
+<br/>
+need no dimensioning, nor allocation, nor deallocation<br/>
+<br/>
+However…<br/>
+ Array are not as used as in cobol, or C, where they are the workhorse.</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use variables ?</strong><br/>Yes…<br/>
+<br/>
+let a = 1<br/>
+let b = 2<br/>
+print (a+b)<br/>
+3<br/>
+<br/>
+let hi = "hello"<br/>
+let w = " world"<br/>
+print (hi++w)<br/>
+"hello world"<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+However… <br/>
+<br/>
+- you cannot change  a variable !! (mutate the value)<br/>
+<br/>
+this is the probably the most surprising change from imperative. We will see we can perfectly live with this, what it changes in the practice in..(tbd), and we will discuss the reason at length in Section 4, <br/>
+Lets just accept it for now, until we have enough material to show meaningful example (at the end of this section)<br/>
+<br/>
+<br/>
+N...</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use if then else ?</strong><br/>Yes..<br/>
+<br/>
+if (a==1) then True else False<br/>
+<br/>
+Note: else is not optional <br/>
+<br/>
+block and layout ?</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use the For / while loop ?</strong><br/>Yes.<br/>
+<br/>
+for ("abc" uppercase) = "ABC"<br/>
+for ([1,2,3] even) = [False, True, False]<br/>
+<br/>
+for (list function) iterates a function  over the list , and generates a list of results.<br/>
+<br/>
+However…<br/>
+<br/>
+the canonical way in Haskell is map.<br/>
+for is just another way to say map with the arguments flipped.<br/>
+ <br/>
+<br/>
+for ("abc" uppercase)  = map ( uppercase "abc") = "ABC"<br/>
+<br/>
+<br/>
+for (alist f) = map (f alist )</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use recursion ?</strong><br/>Yes.<br/>
+lets use a classical , the factorial<br/>
+reminder : 5! = 5x4x3X2x1 = 120<br/>
+<br/>
+in C: <br/>
+using a for loop :<br/>
+long factorial(int n)<br/>
+{<br/>
+  int c;<br/>
+  long result = 1;<br/>
+ <br/>
+  for (c = 1; c <= n; c++)<br/>
+    result = result * c;<br/>
+ <br/>
+  return result;<br/>
+}<br/>
+<br/>
+using recursion :<br/>
+<br/>
+long factorial(int n)<br/>
+{<br/>
+  if (n == 0)<br/>
+    return 1;<br/>
+  else<br/>
+    return(n * factorial(n-1));<br/>
+}<br/>
+<br/>
+in Haskell, using recursion :<br/>
+fac (n) = if ( n == 0 ) then 1 else n*fac(n-1)</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I work without mutating variable</strong><br/>map and fold on recursion</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I define function/procedure/subroutines ?</strong><br/>Yes.<br/>
+<br/>
+in C : <br/>
+int f(int x, int y) {<br/>
+    return x*x + y*y;<br/>
+}<br/>
+<br/>
+in Haskell : <br/>
+f x y = x*x + y*y<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+However, <br/>
+there are two categories:  functions and actions.<br/>
+<br/>
+f x = ((g (x ))*(h (x) ))/ 2<br/>
+we do not care if the compiler evaluates g or h first, as long it comes with a good result. this is a function. a function always gives the same result (given the same parameters).<br/>
+<br/>
+now consider getChar that reads a character from StdIn.<br/>
+it will NOT give the same result at every call, as it depends on what is co...</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I reduce the number of parentheses, curly braces </strong><br/>yes.<br/>
+ Lets introduce three techniques to have a minimalist reading : <br/>
+- layout<br/>
+- removing parentheses and $ <br/>
+- pattern matching and guards.<br/>
+<br/>
+curly braces, semicolon and parentheses are optional, unless ambiguity need to be raised. <br/>
+<br/>
+curly braces are used to delimitate a block. layout can be used instead.<br/>
+<br/>
+<br/>
+myaction  = do {<br/>
+      print "hello"; <br/>
+      print "world/n";<br/>
+   }<br/>
+myaction  = do <br/>
+      print "hello"<br/>
+      print "world/n"<br/>
+<br/>
+this would not compile: <br/>
+<br/>
+myaction  = do <br/>
+      print "hello"<br/>
+  pr...</p>
+</li>
+<li>
+<p class="binderItem"><strong>Pattern Matching and guards.</strong><br/>explain layout</p>
+</li>
+<li>
+<p class="binderItem"><strong>can pattern matching be used on lists ?</strong><br/>Yes <br/>
+<br/>
+Pattern Matching work not  only for numerical , lets try on lists :<br/>
+<br/>
+Lets try an example of a loop.<br/>
+we iterate over ['a','b',c'] to uppercase each letter.<br/>
+<br/>
+1/ with brackets and curly braces:<br/>
+toUppercase (  l ) = { if ( l ==[]) <br/>
+                         then  [] <br/>
+                         else { uppercase (head(l ): toUppercase (tail (l))}<br/>
+}<br/>
+<br/>
+2/lets remove the brackets and curly braces<br/>
+<br/>
+toUppercase   l  =  if ( l ==[]) <br/>
+                         then  [] <br/>
+                         else  upperc...</p>
+</li>
+<li>
+<p class="binderItem"><strong>Can I generalize this loop stuff</strong><br/>Bob : Can I generalize this loop stuff ?<br/>
+Simon : look at map<br/>
+map f  []               =  [] map f (x:xs)            =  f x : map f xs<br/>
+map uppercase ['a','b',c'] = <br/>
+uppercase a : map uppercase [ 'b', ' c']= <br/>
+'A' : uppercase 'b' : map uppercase 'c' = 'A':'B': uppercase 'c': map uppercase []<br/>
+= 'A':'B':'C':[] = "ABC"<br/>
+so we could use map to define the previous function toUppercase<br/>
+toUppercase l = map uppercase l<br/>
+<br/>
+Bob: wow, this is going to be hard to do more terse…<br/>
+Simon : indeed<br/>
+<br/>
+map is doing all the...</p>
+</li>
+<li>
+<p class="binderItem"><strong>can I use File ?</strong></p>
+</li>
+<li>
+<p class="binderItem"><strong>can i do</strong><br/>explain  print $ map </p>
+</li>
+<li>
+<p class="binderItem"><strong>types</strong><br/>types, IO, </p>
+</li>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Clara and Object Orientation</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>Content</strong><br/>Types, class,<br/>
+ currying ?<br/>
+infix operators<br/>
+pattern matching<br/>
+gaurds<br/>
+ sign</p>
+</li>
+<li>
+<p class="binderItem"><strong>Untitled</strong></p>
+</li>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Jo and Agile Builds</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>content</strong><br/>Ghc make, runhaskell, <br/>
+Cabal<br/>
+Cabal-dev<br/>
+Hackage, stackage<br/>
+Unit tests<br/>
+Haddock<br/>
+Refactoring<br/>
+Understanding ghc messages.<br/>
+module<br/>
+<br/>
+---<br/>
+Hpc >= Intermediate<br/>
+Hlint >= Intermediate<br/>
+QCheck >= Intermediate<br/>
+Template Haskell >= Advanced</p>
+</li>
+</ul>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Part 2 : A ledger program</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>getting practical</strong><br/>In this section we get practical, <br/>
+Fitst, we talk about the problems specific to haskell, which may hinder Bob, Clara and Jo when starting.<br/>
+Then we compile a few programs, refactor them from an imperative style to a more haskellish way, in order to master tools and techniques, and see what you do when the compiler complains.<br/>
+Then we take a more ambitious program, the base for our ledger program. this provides the opportunity to put together the techniques we saw, plus a few new ones , and get ac...</p>
+</li>
+<li>
+<p class="binderItem"><strong>what May hurts you when you use haskell</strong><br/>Ignorance generates pain and suffering when you start. but especially , ignorance linked to assumptions that are not adequate any more when haskelling.<br/>
+<br/>
+in most other languages, to get to a running program, is 10% compiler and syntax fight, and 90% debug . In Haskell, this is the opposite.<br/>
+Most of the time, this is not seen, and it hurts because we have the wrong assumptions.<br/>
+Knowing this is key not to lose the spirit when starting.<br/>
+<br/>
+why is that, first ? <br/>
+<br/>
+<br/>
+a C compiler has a simple system and w...</p>
+</li>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Part 3 : concepts Bob, Clara and Jo did not knew (Intermediate)</strong></p>
+</li>
+<hr/>
+<ul>
+<li>
+<p class="binderItem"><strong>Content</strong><br/>lazyness, <br/>
+polymorphic types<br/>
+list comprehension<br/>
+patterns<br/>
+guards<br/>
+lamba function<br/>
+point <br/>
+point free<br/>
+composition<br/>
+infinite structure<br/>
+</p>
+</li>
+</ul>
+<hr/>
+<li>
+<p class="binderItem"><strong>Part 4: To the infinite and beyond (Advanced)</strong></p>
+</li>
+</ul>
+
+</td>
+<td width="8">
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+
+</body>
+</html>

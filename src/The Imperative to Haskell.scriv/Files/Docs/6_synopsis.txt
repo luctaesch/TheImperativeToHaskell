@@ -1,0 +1,1 @@
+a bridge from for actual programmer into haskell FP world

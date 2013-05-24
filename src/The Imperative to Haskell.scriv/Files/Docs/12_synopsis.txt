@@ -1,0 +1,8 @@
+big idea:
+ not explain but show to imperative programmer
+ tell how NOT to program to imperative programmer, i.e. where are the problems you will fall into ( 
+what you have to unlearn from your current back ground /  assumptions ( via negativa: what haskell is NOT)
+
+what main point  :
+- how to do what you usually do , in cobol/ C/ java in haskell.
+	- focus on what you have to do differently
