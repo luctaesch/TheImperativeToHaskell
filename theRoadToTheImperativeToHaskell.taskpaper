@@ -17,3 +17,8 @@ How to collaborate ?:
 		- via negativa
 	- do a pedagocial roadmap, i.e. a list of topics, order it ( topological sort on deps), assign to section, find authors.
 
+
+
+git update :
+	git commit -m
+	git push origin master

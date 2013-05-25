@@ -49,7 +49,7 @@ Bartosz Milewski bartosz@relisoft.com</p>
 <p class="binderItem"><strong>licence</strong><br/><br/>
 <br/>
 <br/>
-This work , the imperative to haskell de Luc Taesch, is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.</p>
+This work , the imperative to Haskell de Luc Taesch, is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License. To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.</p>
 </li>
 </ul>
 <hr/>
@@ -370,7 +370,25 @@ Simon : indeed<br/>
 map is doing all the...</p>
 </li>
 <li>
-<p class="binderItem"><strong>can I use File ?</strong></p>
+<p class="binderItem"><strong>can I use File ?</strong><br/>Yes.<br/>
+the following read a string from stdin ( into inpStr) , and  print  ( putStrLn ) the uppercase version of the String, then recurse, until EOF.<br/>
+<br/>
+<br/>
+main = do <br/>
+        mainloop<br/>
+<br/>
+<br/>
+mainloop  = <br/>
+    do ineof <- isEOF<br/>
+       if ineof<br/>
+           then return ()<br/>
+           else do inpStr <- getLine<br/>
+                   putStrLn (map toUpper inpStr) //( or uppercase ?)<br/>
+                   mainloop <br/>
+<br/>
+we learned getLine , putStrLn, and isEOF for stdin/ stdout<br/>
+<br/>
+the equivalent for a file is hGetLine, hPutStrL...</p>
 </li>
 <li>
 <p class="binderItem"><strong>can i do</strong><br/>explain  print $ map </p>
