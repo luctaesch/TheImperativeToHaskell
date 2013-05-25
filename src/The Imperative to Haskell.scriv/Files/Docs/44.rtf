@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf370
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fnil\fcharset0 Verdana;}
+{\colortbl;\red255\green255\blue255;}
+\deftab720
+\pard\pardeftab720
+
+\f0\fs26 \cf0 Yes.\
+the following read a string from stdin ( into inpStr) , and  print  ( putStrLn ) the uppercase version of the String, then recurse, until EOF.\
+\
+\
+main = do \
+        mainloop\
+\
+\
+mainloop  = \
+    do ineof <- isEOF\
+       if ineof\
+           then return ()\
+           else do inpStr <- getLine\
+                   putStrLn (map toUpper inpStr) //( or uppercase ?)\
+                   mainloop \
+\
+\pard\pardeftab720
+
+\f1\fs28 \cf0 we learned 
+\f0\fs26 getLine , putStrLn, and isEOF for stdin/ stdout\
+\
+the equivalent for a file is hGetLine, hPutStrLn, hPrint which takes a filehandle as  parameter. this handle, you got it with openFile.\
+\
+\
+\
+main = do \
+       inh <- openFile "input.txt" ReadMode\
+       outh <- openFile "output.txt" WriteMode\
+       mainloop inh outh\
+       hClose inh\
+       hClose outh\
+\
+\
+mainloop inh outh = \
+    do ineof <- hIsEOF inh\
+       if ineof\
+           then return ()\
+           else do inpStr <- hGetLine inh\
+                   hPutStrLn outh (map toUpper inpStr)\
+                   mainloop inh outh}
