@@ -1,8 +1,20 @@
+Journal:
 21 mai 2013 Richard, Stephane ? fine to review and give opinion
 21 mai 2013 Bartozs interested on principles. he sent his talk (on Imperative! ) . I sent him the concept PDF.
 22 mai 2013 skype with Tom. interested to contribute.
 24 mai 2013 tom on the list yesterday.
 first message to state the repo
+ Bartozs replied 
+    My main concern (and I have struggled with it myself) is that if you emphasize too much the imperative side of Haskell, you will produce code that doesn’t look like regular Haskell. It’s like teaching a dialect of Haskell. Some of the examples won’t even compile without monadic IO context.
+
+ ill replied , explaiining the philosophy and approach of the book. I  may have to write this down in detail and share sometime  if I have more rebuke of this kind., until it becomes apparent by itself , ie need Section 1 and 3 filled…
+
+25 mai 2013 sebastien  provided some comments that lead me to update the readme , introducing level of involvement. the access to the pdf was not clear enough.
+also, I discovered that lots of MD fils did not synced ! 
+explanation was that, when inserting a new section early in the book , all MD are renamed, and need a gitt add again. found by git status @fix @done @watchout
+
+
+Action:
 How to collaborate ?:
 	- scrivener <> MD <> GitHub
 		- test the Md generation and GitHuB sync.
@@ -12,6 +24,9 @@ How to collaborate ?:
 		- create a repo @done
 		- push to Git @done
 		- produce a status file 
+			- ask forum how to automate this in output
+		- maybe show the section number to reconcile the MD files
+		- produce an approach statement @maybe 
 
 	- convergence and agreement needed on scope,content, (format ?)
 		- via negativa

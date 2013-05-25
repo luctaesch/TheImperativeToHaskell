@@ -1,6 +1,13 @@
 This are the sources for the book "The Imperative To Haskell".
 
-You can benefit get involved at
+You can benefit by:
+
+-	Reading
+- Commenting
+- Reviewing
+- contributing a bit
+- contributing a lot: become co-author
+
 
 ## 0.Reading ##
 
